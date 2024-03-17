@@ -9,7 +9,6 @@ import MyAccount from '../components/Account/MyAccount/MyAccount';
 import Shop from '../components/Shop/Shop';
 import ItemView from '../routes/ItemView';
 import CategoryView from '../routes/CategoryView';
-import SearchView from '../routes/Search';
 import CartItemsProvider from '../Context/CartItemsProvider';
 import Login from '../components/Authentication/Login/Login';
 import Register from '../components/Authentication/Register/Register';
@@ -41,7 +40,6 @@ function App() {
               <Route path="/item/kids/:id" element={<ItemView />} />
               <Route path="/item/featured/:id" element={<ItemView />} />
               <Route path="/wishlist" element={<Wishlist />} />
-              <Route path="/search/*" element={<SearchView />} />
               <Route path="/admin" element={<Wishlist />} />
             </Routes>
             <Footer />

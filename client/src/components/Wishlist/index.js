@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { WishItemsContext } from '../../Context/WishItemsContext';
 import WishCard from '../Card/Wishlist/WishCard';
-import '.././index.css'
+import './index.css'
 
 const Wishlist = () => {
     const wishItems = useContext(WishItemsContext)
