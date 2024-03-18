@@ -12,7 +12,7 @@ app.use(express.urlencoded({extended: false}))
 app.use(express.static("public"));
 connectDB();
 
-app.use('/auth/register', authRoutes);
+app.use('/auth', authRoutes);
 app.use('/api/items', require("./routes/items"))
 app.use('/api/payment', cors(), require("./routes/payment"))
 
