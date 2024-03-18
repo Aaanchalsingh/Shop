@@ -9,4 +9,4 @@ router.post('/', cors(), initializePayment)
 // verfiy payment endpoint
 router.get('/verify/:id', cors(), verifyPayment)
 
-module.exports = router
+module.exports = router;

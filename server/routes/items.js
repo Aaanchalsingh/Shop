@@ -6,7 +6,6 @@ const { getItem, addItem, updateItem, deleteItem } = require("../controllers/ite
 
 router.get('/', cors(), getItem)
 
-/* The post request must have a body elemnt with name images */
 router.post('/', uploadPhoto.array('images'), addItem)
 
 router.put('/:id', updateItem)

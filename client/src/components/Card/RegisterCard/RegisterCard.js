@@ -20,7 +20,7 @@ const RegisterCard = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('/auth/register', formData);
+            await axios.post('http://localhost:5000/auth/register', formData);
             setRegistrationSuccess(true);
             navigate('/account/login');
         } catch (error) {
