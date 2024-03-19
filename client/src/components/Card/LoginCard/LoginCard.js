@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './LoginCard.css';
 
-const LoginCard = () => {
+const LoginCard=() => {
     return (
         <div className="login__card__container">
             <div className="login__card">
@@ -15,7 +15,7 @@ const LoginCard = () => {
                     </div>
                     <div className="password__input__container input__container">
                         <label className="password__label input__label" >Password</label>
-                        <input type="password" className="password__input login__input" placeholder='**********'/>
+                        <input type="password" className="password__input login__input" placeholder='**********' />
                     </div>
                     <div className="login__button__container">
                         <button className="login__button"  >LOGIN</button>
@@ -27,7 +27,7 @@ const LoginCard = () => {
                 </div>
             </div>
         </div>
-     );
+    );
 }
 
 export default LoginCard;
