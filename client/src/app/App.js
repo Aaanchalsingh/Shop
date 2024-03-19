@@ -19,6 +19,7 @@ import DrawerNav from '../components/Nav/DrawerNav/DrawerNav';
 // eslint-disable-next-line
 import Checkout from '../components/Checkout/Checkout';
 import SearchProvider from '../Context/SearchProvider';
+import "../index.css"
 
 function App() {
   return (
