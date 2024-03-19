@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import './RegisterCard.css';
-import axios from 'axios'; // Import axios for making HTTP requests
 
 const RegisterCard = () => {
     const [formData, setFormData] = useState({
@@ -20,7 +19,6 @@ const RegisterCard = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/auth/register', formData);
             setRegistrationSuccess(true);
             navigate('/account/login');
         } catch (error) {
