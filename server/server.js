@@ -4,8 +4,9 @@ const cors=require("cors");
 require("dotenv").config();
 const connectDB=require("./config/db");
 const bodyParser=require('body-parser');
-const mongoose =require("mongoose");
+const mongoose=require("mongoose");
 mongoose.set('strictQuery', false);
+import jwt from "jsonwebtoken";
 
 
 app.use(cors());
@@ -17,56 +18,73 @@ connectDB();
 app.use('/api/items', require("./routes/items"));
 app.use('/api/payment', cors(), require("./routes/payment"));
 
-mongoose.connect(process.env.MONGO_URI).then(() => {
-    console.log("Connected to AuthDatabase");
-  }).catch((err) => {
-    console.error("Error connecting to MongoDB:", err);
-  });
+mongoose.connect(process.env.ATLAS_URI_AUTH).then(() => {
+  console.log("Connected to AuthDatabase");
+}).catch((err) => {
+  console.error("Error connecting to MongoDB:", err);
+});
 
-  const userSchema=new mongoose.Schema({
-    name: String,
-    email: String,
-    password: String
-  });
+const userSchema=new mongoose.Schema({
+  name: String,
+  email: String,
+  password: String
+});
 
-  const User=mongoose.model("User", userSchema);
+const JWT_SECRET=process.env.JWT_SECRET;
 
-  app.post("/Login", async (req, res) => {
-    const { email, password }=req.body;
+const User=mongoose.model("User", userSchema);
+const checkLoggedIn=(req, res, next) => {
+  const token=req.headers.authorization;
+
+  if (token) {
     try {
-      const user=await User.findOne({ email: email });
-      if (user) {
-        if (password===user.password) {
-          res.send({ message: "login success", user: user });
-        } else {
-          res.send({ message: "wrong credentials" });
-        }
-      } else {
-        res.send("not registered");
-      }
+      const decoded=jwt.verify(token, JWT_SECRET);
+      res.status(403).json({ message: "User is already logged in" });
     } catch (error) {
-      console.error("Error logging in:", error);
-      res.status(500).send({ message: "Internal Server Error" });
+      next();
     }
-  });
+  } else {
+    next();
+  }
+};
 
-  app.post("/Register", async (req, res) => {
-    const { name, email, password }=req.body;
-    try {
-      const existingUser=await User.findOne({ email: email });
-      if (existingUser) {
-        res.send({ message: "User already exists" });
+app.post("/Login", checkLoggedIn, async (req, res) => {
+  const { email, password }=req.body;
+  try {
+    const user=await User.findOne({ email: email });
+    if (user) {
+      if (password===user.password) {
+        const token=jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
+        res.send({ message: "login success", token: token });
       } else {
-        const newUser=new User({ name, email, password });
-        await newUser.save();
-        res.send({ message: "Registration successful" });
+        res.send({ message: "wrong credentials" });
       }
-    } catch (error) {
-      console.error("Error registering user:", error);
-      res.status(500).send({ message: "Internal Server Error" });
+    } else {
+      res.send("not registered");
     }
-  });
+  } catch (error) {
+    console.error("Error logging in:", error);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
 
-  app.listen(6969, () => {
-    console.log("Server started on port 6969");
-  });
+app.post("/Register", async (req, res) => {
+  const { name, email, password }=req.body;
+  try {
+    const existingUser=await User.findOne({ email: email });
+    if (existingUser) {
+      res.send({ message: "User already exists" });
+    } else {
+      const newUser=new User({ name, email, password });
+      await newUser.save();
+      res.send({ message: "Registration successful" });
+    }
+  } catch (error) {
+    console.error("Error registering user:", error);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+
+app.listen(6969, () => {
+  console.log("Server started on port 6969");
+});
