@@ -10,8 +10,6 @@
 /secret.js
 /itemsCollection.js
 
-# production
-/build
 
 # misc
 .env
