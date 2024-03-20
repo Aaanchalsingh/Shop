@@ -17,7 +17,8 @@ const Register = () => {
     });
   };
 
-  const register = () => {
+  const register = (e) => {
+    e.preventDefault();
     axios
       .post("http://localhost:6969/Register", user)
       .then((res) => {
@@ -25,11 +26,13 @@ const Register = () => {
         if (token) {
           localStorage.setItem("token", token);
         }
+
         navigate("/");
+        window.location.reload();
       })
       .catch((err) => console.log(err));
   };
-
+  // eslint-disable-next-line
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/account/login");
@@ -101,14 +104,6 @@ const Register = () => {
               </button>
             </div>
           </form>
-        </div>
-        <div className="flex items-center justify-center mt-6">
-          <button
-            className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
         </div>
       </div>
     </center>
