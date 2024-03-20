@@ -8,7 +8,7 @@ const mongoose=require("mongoose");
 const jwt=require("jsonwebtoken");
 
 app.use(cors({
-  origin:["https://shop-diei4ixsl-aaanchalsinghs-projects.vercel.app"],
+  origin:["https://shop-nnfjnqiah-aaanchalsinghs-projects.vercel.app/"],
   methods:['GET','POST'],
   credentials:true
 }));

@@ -20,7 +20,7 @@ const Register = () => {
   const register = (e) => {
     e.preventDefault();
     axios
-      .post("https://shop-diei4ixsl-aaanchalsinghs-projects.vercel.app/Register", user)
+      .post("https://shop-api-aaanchalsingh-aaanchalsinghs-projects.vercel.app/Register", user)
       .then((res) => {
         const token = res.data.token;
         if (token) {
