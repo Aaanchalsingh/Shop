@@ -5,6 +5,8 @@ require("dotenv").config();
 const connectDB=require("./config/db");
 const bodyParser=require('body-parser');
 const mongoose =require("mongoose");
+mongoose.set('strictQuery', false);
+
 
 app.use(cors());
 app.use(express.json());
