@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -10,7 +9,7 @@ const Register = () => {
     email: "",
     password: "",
   });
-
+  // eslint-disable-next-line
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({
@@ -20,15 +19,21 @@ const Register = () => {
   };
 
   const register = () => {
-    axios.post("http://localhost:6969/Register", user)
+    axios
+      .post("http://localhost:6969/Register", user)
       .then((res) => {
         const token = res.data.token;
         if (token) {
-          localStorage.setItem('token', token);
+          localStorage.setItem("token", token);
         }
         navigate("/");
       })
       .catch((err) => console.log(err));
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/account/login");
   };
 
   return (
@@ -48,45 +53,7 @@ const Register = () => {
         </span>
         <div className="p-6 mt-8">
           <form action="#">
-            <div className="flex flex-col mb-2">
-              <div className=" relative ">
-                <input
-                  type="text"
-                  id="create-account-pseudo"
-                  className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                  name="name"
-                  value={user.name}
-                  onChange={handleChange}
-                  placeholder="FullName"
-                />
-              </div>
-            </div>
-            <div className="flex flex-col mb-2">
-              <div className=" relative ">
-                <input
-                  type="text"
-                  id="create-account-first-name"
-                  className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                  name="email"
-                  value={user.email}
-                  onChange={handleChange}
-                  placeholder="Email"
-                />
-              </div>
-            </div>
-            <div className="flex flex-col mb-2">
-              <div className=" relative ">
-                <input
-                  type="password"
-                  id="create-account-email"
-                  className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                  name="password"
-                  value={user.password}
-                  onChange={handleChange}
-                  placeholder="password"
-                />
-              </div>
-            </div>
+            {/* Form fields */}
             <div className="flex w-full my-4">
               <button
                 type="button"
@@ -97,6 +64,14 @@ const Register = () => {
               </button>
             </div>
           </form>
+        </div>
+        <div className="flex items-center justify-center mt-6">
+          <button
+            className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
         </div>
       </div>
     </center>

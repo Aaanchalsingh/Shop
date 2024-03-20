@@ -7,6 +7,7 @@ import { TabTitle } from "../utils/General";
 
 
 const Home = () => {
+
     const [ featuredItems, setFeaturedItems ] = useState()
     TabTitle("Home - Shema");
 
@@ -18,7 +19,8 @@ const Home = () => {
         window.scrollTo(0, 0)
     }, [])
 
-    return ( 
+    return (
+
         <Fragment>
             <Landing />
             <FeaturedCategories />
@@ -26,5 +28,5 @@ const Home = () => {
         </Fragment>
     );
 }
- 
+
 export default Home;

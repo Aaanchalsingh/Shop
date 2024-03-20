@@ -19,6 +19,7 @@ const Login = ({ setLoginUser }) => {
   };
 
   const login = async (e) => {
+    e.preventDefault();
     try {
       const res = await axios.post("http://localhost:6969/Login", user);
       const token = res.data.token;
