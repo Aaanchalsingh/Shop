@@ -6,7 +6,7 @@ const connectDB=require("./config/db");
 const bodyParser=require('body-parser');
 const mongoose=require("mongoose");
 mongoose.set('strictQuery', false);
-import jwt from "jsonwebtoken";
+const jwt =require("jsonwebtoken");
 
 
 app.use(cors());
@@ -18,7 +18,7 @@ connectDB();
 app.use('/api/items', require("./routes/items"));
 app.use('/api/payment', cors(), require("./routes/payment"));
 
-mongoose.connect(process.env.ATLAS_URI_AUTH).then(() => {
+mongoose.connect(process.env.MONGO_URI).then(() => {
   console.log("Connected to AuthDatabase");
 }).catch((err) => {
   console.error("Error connecting to MongoDB:", err);
