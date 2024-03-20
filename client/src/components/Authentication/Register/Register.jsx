@@ -9,7 +9,6 @@ const Register = () => {
     email: "",
     password: "",
   });
-  // eslint-disable-next-line
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({
@@ -53,7 +52,45 @@ const Register = () => {
         </span>
         <div className="p-6 mt-8">
           <form action="#">
-            {/* Form fields */}
+            <div className="flex flex-col mb-2">
+              <div className=" relative ">
+                <input
+                  type="text"
+                  id="create-account-pseudo"
+                  className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  name="name"
+                  value={user.name}
+                  onChange={handleChange}
+                  placeholder="FullName"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col mb-2">
+              <div className=" relative ">
+                <input
+                  type="text"
+                  id="create-account-first-name"
+                  className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  name="email"
+                  value={user.email}
+                  onChange={handleChange}
+                  placeholder="Email"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col mb-2">
+              <div className=" relative ">
+                <input
+                  type="password"
+                  id="create-account-email"
+                  className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  name="password"
+                  value={user.password}
+                  onChange={handleChange}
+                  placeholder="password"
+                />
+              </div>
+            </div>
             <div className="flex w-full my-4">
               <button
                 type="button"
