@@ -1,11 +1,11 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
+const express=require("express");
+const app=express();
+const cors=require("cors");
 require("dotenv").config();
-const connectDB = require("./config/db");
-const bodyParser = require('body-parser');
-const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
+const connectDB=require("./config/db");
+const bodyParser=require('body-parser');
+const mongoose=require("mongoose");
+const jwt=require("jsonwebtoken");
 
 app.use(cors());
 app.use(express.json());
@@ -20,23 +20,25 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
   console.error("Error connecting to MongoDB:", err);
 });
 
-const userSchema = new mongoose.Schema({
+const userSchema=new mongoose.Schema({
   name: String,
   email: String,
   password: String
 });
 
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET=process.env.JWT_SECRET;
 
-const User = mongoose.model("User", userSchema);
-
+const User=mongoose.model("User", userSchema);
+app.get("/", (req, res) => {
+  res.json("hello its me your backend");
+})
 app.post("/Login", async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password }=req.body;
   try {
-    const user = await User.findOne({ email: email });
+    const user=await User.findOne({ email: email });
     if (user) {
-      if (password === user.password) {
-        const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
+      if (password===user.password) {
+        const token=jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
         res.send({ message: "login success", token: token });
       } else {
         res.send({ message: "wrong credentials" });
@@ -51,15 +53,15 @@ app.post("/Login", async (req, res) => {
 });
 
 app.post("/Register", async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password }=req.body;
   try {
-    const existingUser = await User.findOne({ email: email });
+    const existingUser=await User.findOne({ email: email });
     if (existingUser) {
       res.send({ message: "User already exists" });
     } else {
-      const newUser = new User({ name, email, password });
+      const newUser=new User({ name, email, password });
       await newUser.save();
-      const token = jwt.sign({ userId: newUser._id }, JWT_SECRET, { expiresIn: '1h' });
+      const token=jwt.sign({ userId: newUser._id }, JWT_SECRET, { expiresIn: '1h' });
       res.send({ message: "Registration successful", token: token });
     }
   } catch (error) {
