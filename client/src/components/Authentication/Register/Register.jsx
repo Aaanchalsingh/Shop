@@ -22,12 +22,10 @@ const Register = () => {
   const register = () => {
     axios.post("http://localhost:6969/Register", user)
       .then((res) => {
-        // If registration is successful and a token is returned, store it in local storage
         const token = res.data.token;
         if (token) {
           localStorage.setItem('token', token);
         }
-        // Redirect to the home page or perform other actions after successful registration
         navigate("/");
       })
       .catch((err) => console.log(err));
@@ -35,7 +33,7 @@ const Register = () => {
 
   return (
     <center>
-      <div className="flex flex-col max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
+      <div className="flex flex-col max-w-md px-4 py-8 rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10 m-4">
         <div className="self-center mb-2 text-xl font-light text-gray-800 sm:text-2xl dark:text-white">
           Create a new account
         </div>
