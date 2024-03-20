@@ -19,12 +19,12 @@ const Login = ({ setLoginUser }) => {
   };
 
   const login = async (e) => {
-    e.preventDefault();
     try {
       const res = await axios.post("http://localhost:6969/Login", user);
       const token = res.data.token;
       localStorage.setItem('token', token);
       navigate("/");
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -109,7 +109,7 @@ const Login = ({ setLoginUser }) => {
         </div>
         <div className="flex items-center justify-center mt-6">
           <Link
-            to="/Register"
+            to="/account/register"
             className="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white"
           >
             <span className="ml-2">You don't have an account?</span>

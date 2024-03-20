@@ -40,7 +40,7 @@ const Register = () => {
         <span className="justify-center text-sm text-center text-gray-500 flex-items-center dark:text-gray-400">
           Already have an account ?
           <Link
-            to="/Login"
+            to="/account/login"
             className="text-sm text-blue-500  hover:text-blue-700"
           >
             &nbsp; Sign in
