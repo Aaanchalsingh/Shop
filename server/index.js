@@ -7,11 +7,7 @@ const bodyParser=require('body-parser');
 const mongoose=require("mongoose");
 const jwt=require("jsonwebtoken");
 
-app.use(cors({
-  origin:["https://shop-nnfjnqiah-aaanchalsinghs-projects.vercel.app/"],
-  methods:['GET','POST'],
-  credentials:true
-}));
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
