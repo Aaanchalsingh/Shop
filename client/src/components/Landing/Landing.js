@@ -1,10 +1,10 @@
 import './Landing.css'
-import land from '../../asset/brand/men2.png'
+import land from './1.png';
 import { Link } from "react-router-dom"
 import { Button } from "@mui/material";
 
 const Landing = () => {
-    return ( 
+    return (
         <div className="landing__container">
             <div className="landing__header__container">
                 <div className="landing__header">
@@ -21,5 +21,5 @@ const Landing = () => {
         </div>
      );
 }
- 
+
 export default Landing;
