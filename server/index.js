@@ -29,9 +29,11 @@ const userSchema=new mongoose.Schema({
 const JWT_SECRET=process.env.JWT_SECRET;
 
 const User=mongoose.model("User", userSchema);
+
 app.get("/", (req, res) => {
   res.json("hello its me your backend");
 })
+
 app.post("/Login", async (req, res) => {
   const { email, password }=req.body;
   try {
