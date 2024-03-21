@@ -21,7 +21,7 @@ const Login = ({ setLoginUser }) => {
   const login = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:6969/Login", user);
+      const res = await axios.post("https://shop-backend-three.vercel.app/Login", user);
       const token = res.data.token;
       localStorage.setItem('token', token);
       navigate("/");
