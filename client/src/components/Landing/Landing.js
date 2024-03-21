@@ -1,5 +1,5 @@
 import './Landing.css'
-import land from './1.png';
+import land from './2.png';
 import { Link } from "react-router-dom"
 import { Button } from "@mui/material";
 
@@ -16,7 +16,7 @@ const Landing = () => {
                 </div>
             </div>
             <div className="landing__image__container">
-                <img className="landing__image" src={land} alt=""/>
+                <img className="landing__image" src={land} alt=""height={100} width={100}/>
             </div>
         </div>
      );

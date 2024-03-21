@@ -63,8 +63,8 @@
 }
 
 .landing__image {
-    height: auto;
-    width: auto;
+    height: 500px;
+    width: 1200px;
     top: 0%;
     z-index: 10;
 }
