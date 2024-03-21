@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 
 const Landing = () => {
     return (
-        <div className="landing__container">
+        <div className="landing__container ">
             <div className="landing__header__container">
                 <div className="landing__header">
                     <h3 className="landing__header__discount">UP TO 15% DISCOUNT</h3>

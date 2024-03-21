@@ -21,7 +21,7 @@ const Home = () => {
 
     return (
 
-        <Fragment>
+        <Fragment >
             <Landing />
             <FeaturedCategories />
             <FeaturedItems items={featuredItems}/>
